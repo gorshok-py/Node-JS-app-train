@@ -33,16 +33,11 @@ pipeline {
             sh 'curl localhost:5001'
                   }
                                          }
-        stage('Clean') {
-            steps {
-            sh 'docker stop nodejsapplet'
-            sh 'docker container rm nodejsapplet'
-                  }
-                                         }
-                                         
     }
             post {
             always {
+                sh 'docker stop nodejsapplet'
+                sh 'docker container rm nodejsapplet'
                 cleanWs()
         }
     }
